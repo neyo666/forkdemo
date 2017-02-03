@@ -10,6 +10,7 @@ class User < ApplicationRecord
       has_secure_password
 
 
+
       # ALL NEW METHODS
           def User.digest(string)
             cost = ActiveModel::SecurePassword.min_cost ?    
@@ -36,4 +37,9 @@ class User < ApplicationRecord
               update_attribute(:remember_digest, nil)
            end  
      end
+
+      def feed
+        Micropost.where("user_id = ?", id)
+      end 
+
 end
